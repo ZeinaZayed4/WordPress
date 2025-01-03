@@ -18,7 +18,12 @@ function add_styles()
 
 function add_scripts()
 {
-	wp_enqueue_script('bootstrap-js', get_template_directory_uri() . '/assets/js/bootstrap.bundle.min.js', array(), false, true);
+	wp_deregister_script('jquery'); // remove registered jquery
+	// register a new jquery in footer
+	wp_register_script('jquery', includes_url('/js/jquery/jquery.js'), false, '', true);
+	// enqueue the new jquery
+	wp_enqueue_script('jquery');
+	wp_enqueue_script('bootstrap-js', get_template_directory_uri() . '/assets/js/bootstrap.bundle.min.js', array('jquery'), false, true);
 	wp_enqueue_script('main-js', get_template_directory_uri() . '/assets/js/main.js', array(), false, true);
 }
 
