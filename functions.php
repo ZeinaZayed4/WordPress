@@ -7,8 +7,9 @@
 
 function add_styles()
 {
-	wp_enqueue_style('bootstrap-css', get_template_directory_uri() . '/assets/css/bootstrap.min.css');
-	wp_enqueue_style('font-awesome', get_template_directory_uri() . '/assets/css/fontawesome.min.css');
+	wp_enqueue_style('bootstrap', get_template_directory_uri() . '/assets/css/bootstrap.min.css');
+	wp_enqueue_style('fontawesome', get_template_directory_uri() . '/assets/css/fontawesome.min.css');
+	wp_enqueue_style('main', get_template_directory_uri() . '/assets/css/main.css');
 }
 
 /**
