@@ -1,5 +1,7 @@
 <?php
 
+require_once('wp-bootstrap-navwalker.php');
+
 /**
  * Function to add my custom styles
  * wp_enqueue_style()
@@ -27,18 +29,27 @@ function add_scripts()
 }
 
 /**
- * Add actions
- * add_action()
- */
-add_action('wp_enqueue_scripts', 'add_styles');
-add_action('wp_enqueue_scripts', 'add_scripts');
-
-/**
  * Add custom menu support
  */
 function register_custom_menu()
 {
-	register_nav_menu('bootstrap-menu', __('Navigation Bar'));
+	register_nav_menus(array(
+		'bootstrap-menu' => 'Navigation Bar',
+		'footer-menu' => 'Footer Menu'
+	));
 }
 
+function bootstrap_menu()
+{
+	wp_nav_menu(array(
+		'theme_location' => 'bootstrap-menu',
+		'menu_class' => 'navbar-nav ms-auto mb-2 mb-lg-0',
+		'container' => false,
+		'depth' => 2,
+		'walker' => new WP_Bootstrap_Navwalker(),
+	));
+}
+
+add_action('wp_enqueue_scripts', 'add_styles');
+add_action('wp_enqueue_scripts', 'add_scripts');
 add_action('init', 'register_custom_menu');
