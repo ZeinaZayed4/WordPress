@@ -4,7 +4,6 @@
  * Function to add my custom styles
  * wp_enqueue_style()
  */
-
 function add_styles()
 {
 	wp_enqueue_style('bootstrap', get_template_directory_uri() . '/assets/css/bootstrap.min.css');
@@ -16,7 +15,6 @@ function add_styles()
  * Function to add my custom scripts
  * wp_enqueue_style()
  */
-
 function add_scripts()
 {
 	wp_deregister_script('jquery'); // remove registered jquery
@@ -34,3 +32,13 @@ function add_scripts()
  */
 add_action('wp_enqueue_scripts', 'add_styles');
 add_action('wp_enqueue_scripts', 'add_scripts');
+
+/**
+ * Add custom menu support
+ */
+function register_custom_menu()
+{
+	register_nav_menu('bootstrap-menu', __('Navigation Bar'));
+}
+
+add_action('init', 'register_custom_menu');
