@@ -1,3 +1,10 @@
+/* Start main rules */
+body {
+    background-color: #eee;
+}
+/* End main rules */
+
+/* Start footer */
 .footer {
     background-color: #333;
     color: #eee;
@@ -7,3 +14,41 @@
     left: 0;
     width: 100%;
 }
+/* End footer */
+
+/* Start posts */
+.main-post {
+    margin-top: 15px;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #d8d8d8;
+    margin-bottom: 15px;
+}
+
+.main-post h3 {
+    margin: 0 0 10px;
+    font-weight: bold;
+    color: #777;
+    letter-spacing: -1px;
+}
+
+.main-post .post-author,
+.main-post .post-date,
+.main-post .post-comments {
+    font-size: 14px;
+}
+
+.main-post img {
+    display: block;
+    margin: 10px 0 10px;
+}
+
+.main-post .post-content {
+    line-height: 1.7;
+    color: #888;
+}
+
+.main-post i {
+    color: #999;
+}
+/* End posts */

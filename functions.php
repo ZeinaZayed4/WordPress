@@ -2,6 +2,9 @@
 
 require_once('wp-bootstrap-navwalker.php');
 
+// Add featured image support
+add_theme_support('post-thumbnails');
+
 /**
  * Function to add my custom styles
  * wp_enqueue_style()
@@ -9,7 +12,7 @@ require_once('wp-bootstrap-navwalker.php');
 function add_styles()
 {
 	wp_enqueue_style('bootstrap', get_template_directory_uri() . '/assets/css/bootstrap.min.css');
-	wp_enqueue_style('fontawesome', get_template_directory_uri() . '/assets/css/fontawesome.min.css');
+	wp_enqueue_style('fontawesome', get_template_directory_uri() . '/assets/css/all.min.css');
 	wp_enqueue_style('main', get_template_directory_uri() . '/assets/css/main.css');
 }
 
@@ -49,6 +52,19 @@ function bootstrap_menu()
 		'walker' => new WP_Bootstrap_Navwalker(),
 	));
 }
+
+/**
+ * Customize the excerpt word length and read more dots
+ */
+function extend_excerpt_length($length) {
+	return 65;
+}
+add_filter('excerpt_length', 'extend_excerpt_length');
+
+function extend_change_dots($more) {
+	return '...';
+}
+add_filter('excerpt_more', 'extend_change_dots');
 
 add_action('wp_enqueue_scripts', 'add_styles');
 add_action('wp_enqueue_scripts', 'add_scripts');
