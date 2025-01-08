@@ -27,20 +27,42 @@
                             <?php comments_popup_link(); ?>
                         </span>
                         <?php the_post_thumbnail('large', ['class' => 'img-responsive img-thumbnail', 'title' => 'Post Image']) ?>
-                        <p class="post-content">
-<!--                            --><?php //the_content('Read more...'); ?>
+                        <div class="post-content">
                             <?php the_excerpt() ?>
-                        </p>
+                        </div>
                         <hr />
-                        <p class="categories">
+                        <p class="post-categories">
                             <i class="fa-solid fa-tags"></i>
                             <?php the_category(' '); ?>
+                        </p>
+                        <p class="post-tags">
+                            <?php
+                                if (has_tag()) {
+                                    the_tags();
+                                } else {
+                                    echo "Tags: There are no tags.";
+                                }
+                            ?>
                         </p>
                     </div>
                 </div>
         <?php
             }
         }
+        echo '<div class="clearfix"></div>';
+        echo '<div class="post-pagination">';
+            if (get_previous_posts_link()) {
+                previous_posts_link('<i class="fa-solid fa-chevron-left fa-lg"></i> Prev');
+            } else {
+                echo '<span class="previous-span">Prev</span>';
+            }
+            
+            if (get_next_posts_link()) {
+                next_posts_link('Next <i class="fa-solid fa-chevron-right fa-lg"></i>');
+            } else {
+                echo '<span class="next-span">Next</span>';
+            }
+        echo '</div>';
         ?>
     </div>
 </div>
