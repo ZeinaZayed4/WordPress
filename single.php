@@ -13,15 +13,11 @@
 							<?php the_title(); ?>
 						</a>
 					</h3>
-					<span class="post-author">
-                    <i class="fa-regular fa-user"></i>
-                    <?php the_author_posts_link(); ?>
+                    <span class="post-date">
+                        <i class="fa-regular fa-calendar-days"></i>
+                        <?php the_time('F j, Y'); ?>
 	                </span>
-						<span class="post-date">
-	                    <i class="fa-regular fa-calendar-days"></i>
-	                    <?php the_time('F j, Y'); ?>
-	                </span>
-						<span class="post-comments">
+                    <span class="post-comments">
 	                    <i class="fa-regular fa-comments"></i>
 	                    <?php comments_popup_link(); ?>
 	                </span>
@@ -47,7 +43,41 @@
 				<?php
 			}
 		}
-		echo '<div class="clearfix"></div>';
+		echo '<div class="clearfix"></div>'; ?>
+        
+        <div class="row">
+            <div class="col-md-2">
+                <?php
+                    $avatar_arguments = [
+                        'class' => 'img-fluid img-thumbnail mx-auto d-block'
+                    ];
+                    echo get_avatar(get_the_author_meta('ID'), 128, '', 'User avatar', $avatar_arguments);
+                ?>
+            </div>
+            <div class="col-md-10 author-info">
+                <h4>
+                    <?php the_author_meta('first_name'); ?>
+                    <?php the_author_meta('last_name'); ?>
+                </h4>
+                <?php if (get_the_author_meta('description')) : ?>
+                    <p><?php the_author_meta('description'); ?></p>
+                <?php else: ?>
+                    <p><?= 'There is no biography' ?></p>
+                <?php endif; ?>
+            </div>
+        </div>
+        
+        <hr />
+        
+        <p class="author-stats">
+            User Posts Count: <span class="posts-count"><?php echo count_user_posts(get_the_author_meta('ID')); ?></span>,
+            User Profile Link: <?php the_author_posts_link(); ?>
+        </p>
+        
+        <?php
+        
+		echo '<hr class="comment-separator"/>';
+  
 		echo '<div class="post-pagination">';
 		if (get_previous_post_link()) {
 			previous_post_link('%link', '<i class="fa-solid fa-chevron-left fa-lg"></i> %title');
@@ -61,6 +91,9 @@
 			echo '<span class="next-span">Next</span>';
 		}
 		echo '</div>';
+        
+        echo '<hr class="comment-separator"/>';
+        
 		comments_template();
 		?>
 	</div>
